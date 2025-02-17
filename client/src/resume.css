@@ -1,0 +1,95 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+/* Resume Container */
+.resume-container {
+  background: white;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border: none; /* Remove border */
+}
+
+/* Resume Content - Ensures it fits within one page */
+.resume-content {
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.2;
+  max-height: 1050px; /* Prevents content overflow */
+  overflow: hidden;
+}
+
+/* Name Section */
+.resume-name {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Contact Details */
+.resume-contact {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Sections */
+section {
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: 18px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 5px;
+}
+
+/* Projects Section */
+.project-item {
+  page-break-inside: avoid; /* Prevent page breaks within project descriptions */
+}
+
+/* Buttons */
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: darkgray;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .resume-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    box-shadow: none;
+  }
+
+  .resume-content {
+    page-break-after: avoid;
+  }
+
+  button {
+    display: none; /* Hide buttons in print mode */
+  }
+}

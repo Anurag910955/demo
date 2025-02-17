@@ -1,0 +1,232 @@
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #5f8ba9, #4a67ad);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  overflow: auto;
+  transition: background 0.5s ease-in-out;
+}
+
+/* Container */
+.container {
+  background: #fff;
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Headings */
+h2, h3 {
+  text-align: center;
+  color: #333;
+  font-weight: 600;
+  position: relative;
+}
+
+/* Heading Animation */
+h2::after, h3::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: #007bff;
+  display: block;
+  margin: 5px auto;
+  border-radius: 2px;
+  animation: slideIn 0.6s ease-in-out;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Select Resume Template */
+label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border 0.3s ease-in-out;
+}
+
+select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+/* Input Fields */
+input, textarea {
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Input Focus Effect */
+input:focus, textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Buttons */
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* Primary Button */
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Save Button */
+button[type="submit"] {
+  background-color: #ff5722;
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background-color: #e64a19;
+}
+
+/* Add More Button */
+button[type="button"] {
+  background-color: #28a745;
+  color: white;
+}
+
+button[type="button"]:hover {
+  background-color: #218838;
+}
+
+/* Delete Button */
+button.delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+button.delete:hover {
+  background-color: #c82333;
+}
+
+/* Section */
+form div {
+  background: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+form div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+  }
+  input, textarea, select {
+    font-size: 14px;
+  }
+}
+
+/* PRINT STYLES */
+@media print {
+  body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+  }
+
+  .resume-container {
+    page-break-before: avoid;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    transform: scale(0.95);
+    font-size: 14px;
+  }
+
+  /* Remove unnecessary elements when printing */
+  .no-print {
+    display: none;
+  }
+
+  /* Reduce spacing */
+  .resume-section {
+    padding: 5px 10px;
+    margin-bottom: 5px;
+  }
+}
+
+/* Compact Mode */
+.compact {
+  font-size: 12px;
+  line-height: 1.1;
+  padding: 5px;
+}

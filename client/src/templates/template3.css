@@ -1,0 +1,37 @@
+.template3 {
+  font-family: 'Verdana', sans-serif;
+  padding: 30px;
+  border: 1px solid #000;
+  margin: 20px auto;
+  width: 85%;
+  background: #fff;
+}
+
+.template3 h1 {
+  font-size: 28px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.template3 .resume-contact {
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.template3 section {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.template3 h2 {
+  font-size: 20px;
+  border-bottom: 1px solid #000;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+}
+
+.template3 p {
+  margin: 5px 0;
+  font-size: 14px;
+}
