@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true); // Start loading
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
+      const res = await axios.post("https://demo-q0du.onrender.com/api/auth/login", { email, password });
       
       // If backend sends a token in response, you need to handle it
       if (res.data.token) {
