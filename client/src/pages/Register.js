@@ -14,7 +14,7 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true); // Start loading
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", { name, email, password });
+      const res = await axios.post("https://demo-q0du.onrender.com/api/auth/register", { name, email, password });
   
       alert(res.data.message);
       if (res.data.message === "User registered successfully") {
