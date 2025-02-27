@@ -59,27 +59,53 @@ const ResumeForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    try {
-      if (existingData) {
-        // Update existing resume
-        await axios.put(`https://demo-q0du.onrender.com/api/resume/update/${userId}`, formData);
-        alert("Resume updated successfully!");
-      } else {
-        // Create new resume
-        await axios.post("https://demo-q0du.onrender.com/api/resume/save", { userId, ...formData });
-        alert("Resume saved successfully!");
-      }
-      
-      // Navigate to preview with updated data
-      navigate("/resume-preview", { state: { ...formData, userId } });
-    } catch (error) {
-      console.error("Error saving/updating resume:", error);
-      alert("Error: " + (error.response?.data?.error || error.message));
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  console.log("Sending Resume Data:", formData); // Debugging log
+  console.log("User ID being sent:", userId); // Debugging log for userId
+
+  if (!userId || userId.length !== 24) {
+    alert("Invalid user ID. Please log in again.");
+    return;
+  }
+
+  try {
+    let response;
+    if (existingData) {
+      // Update resume
+      response = await fetch(`https://demo-q0du.onrender.com/api/resume/update/${userId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+    } else {
+      // Save new resume
+      response = await fetch("https://demo-q0du.onrender.com/api/resume/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, ...formData }),
+      });
     }
-  };
+
+    const result = await response.json();
+    console.log("Server Response:", result); // Debugging log for response
+
+    if (!response.ok) {
+      throw new Error(result.message || "Failed to save/update resume");
+    }
+
+    alert(existingData ? "Resume updated successfully!" : "Resume saved successfully!");
+
+    // Navigate to preview with updated data
+    navigate("/resume-preview", { state: { ...formData, userId } });
+
+  } catch (error) {
+    console.error("Error saving/updating resume:", error);
+    alert("Error: " + error.message);
+  }
+};
+
 
   return (
     <div className="container">
