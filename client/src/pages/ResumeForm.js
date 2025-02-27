@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import "../form.css"; // Import global styles
+import "../form.css";
 
 const ResumeForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const existingData = location.state || null; // Get existing resume data if editing
+  const existingData = location.state || null;
+
+  const userId = existingData?.userId ?? "650d4f12a5c8b9c123456789"; // Ensure userId persists
 
   const [selectedTemplate, setSelectedTemplate] = useState(
     existingData?.selectedTemplate || "template1"
@@ -59,19 +61,25 @@ const ResumeForm = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userId = existingData?.userId || 1; // Ensure this matches your MongoDB user identification
   
     try {
-      await axios.post("https://demo-q0du.onrender.com/api/resume/save", { userId, ...formData });
-  
-      alert(existingData ? "Resume updated successfully!" : "Resume saved successfully!");
+      if (existingData) {
+        // Update existing resume
+        await axios.put(`https://demo-q0du.onrender.com/api/resume/update/${userId}`, formData);
+        alert("Resume updated successfully!");
+      } else {
+        // Create new resume
+        await axios.post("https://demo-q0du.onrender.com/api/resume/save", { userId, ...formData });
+        alert("Resume saved successfully!");
+      }
+      
+      // Navigate to preview with updated data
       navigate("/resume-preview", { state: { ...formData, userId } });
     } catch (error) {
-      console.error("Error saving resume:", error);
+      console.error("Error saving/updating resume:", error);
       alert("Error: " + (error.response?.data?.error || error.message));
     }
   };
-  
 
   return (
     <div className="container">
