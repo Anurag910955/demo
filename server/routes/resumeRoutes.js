@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const Resume = require("../models/Resume");
 
 const router = express.Router();
@@ -7,10 +8,16 @@ const router = express.Router();
 router.post("/save", async (req, res) => {
   try {
     const { userId, personalDetails, education, experience, skills, projects, certifications, activitiesAwards } = req.body;
+    
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: "Invalid userId format" });
+    }
 
-    // Upsert: If a resume exists, update it; otherwise, create a new one
+    // Convert userId to ObjectId
+    const objectId = new mongoose.Types.ObjectId(userId);
+
     const resume = await Resume.findOneAndUpdate(
-      { userId },
+      { userId: objectId },
       { personalDetails, education, experience, skills, projects, certifications, activitiesAwards },
       { new: true, upsert: true }
     );
@@ -24,7 +31,13 @@ router.post("/save", async (req, res) => {
 // Fetch Resume Data
 router.get("/:userId", async (req, res) => {
   try {
-    const resume = await Resume.findOne({ userId: req.params.userId });
+    const { userId } = req.params;
+    
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: "Invalid userId format" });
+    }
+
+    const resume = await Resume.findOne({ userId: new mongoose.Types.ObjectId(userId) });
 
     if (!resume) {
       return res.status(404).json({ message: "No resume found" });
