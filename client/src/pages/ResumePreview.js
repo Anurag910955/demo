@@ -10,7 +10,7 @@ const ResumePreview = () => {
   const formData = location.state || {}; // Make sure this is properly passed from ResumeForm
 
   const selectedTemplate = formData.selectedTemplate || "template1"; 
-  const userId = formData.userId || 1; // Ensure this matches your MongoDB logic
+  const userId = formData.userId ? String(formData.userId) : "650d4f12a5c8b9c123456789"; // Ensure userId is a string
 
   const handleDownload = () => {
     document.querySelectorAll(".long-section").forEach((section) => {
@@ -23,7 +23,6 @@ const ResumePreview = () => {
       section.style.display = "block"; // Show them back after printing
     });
   };
-
 
   return (
     <div className={`resume-container ${selectedTemplate}`}>
