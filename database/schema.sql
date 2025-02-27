@@ -1,3 +1,4 @@
+-- this is my first command of github 
 CREATE DATABASE resume_builder;
 
 USE resume_builder;
