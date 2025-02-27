@@ -4,36 +4,29 @@ const Resume = require("../models/Resume");
 
 const router = express.Router();
 
-// Save or Update Resume Data
+// Save or Update Resume
 router.post("/save", async (req, res) => {
   try {
     console.log("Received Data:", req.body); // Debugging Log
 
     const { userId, personalDetails, education, experience, skills, projects, certifications, activitiesAwards } = req.body;
 
-    // Check if userId is missing
     if (!userId) {
-      console.log("Missing userId");
       return res.status(400).json({ message: "User ID is required" });
     }
 
-    // Check if userId is a valid MongoDB ObjectId
     if (!mongoose.Types.ObjectId.isValid(userId)) {
-      console.log("Invalid userId format:", userId);
       return res.status(400).json({ message: "Invalid userId format" });
     }
 
-    // Convert userId to ObjectId
     const objectId = new mongoose.Types.ObjectId(userId);
 
-    // Save or Update Resume
     const resume = await Resume.findOneAndUpdate(
       { userId: objectId },
-      { personalDetails, education, experience, skills, projects, certifications, activitiesAwards },
+      { userId: objectId, personalDetails, education, experience, skills, projects, certifications, activitiesAwards },
       { new: true, upsert: true }
     );
 
-    console.log("Resume saved successfully:", resume);
     res.status(200).json({ message: "Resume saved successfully", resume });
   } catch (err) {
     console.error("Error saving resume:", err);
@@ -41,11 +34,38 @@ router.post("/save", async (req, res) => {
   }
 });
 
-// Fetch Resume Data
+// Update Resume (PUT method)
+router.put("/update/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { personalDetails, education, experience, skills, projects, certifications, activitiesAwards } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: "Invalid userId format" });
+    }
+
+    const resume = await Resume.findOneAndUpdate(
+      { userId: new mongoose.Types.ObjectId(userId) },
+      { personalDetails, education, experience, skills, projects, certifications, activitiesAwards },
+      { new: true }
+    );
+
+    if (!resume) {
+      return res.status(404).json({ message: "Resume not found" });
+    }
+
+    res.status(200).json({ message: "Resume updated successfully", resume });
+  } catch (err) {
+    console.error("Error updating resume:", err);
+    res.status(500).json({ message: "Failed to update resume", error: err.message });
+  }
+});
+
+// Fetch Resume
 router.get("/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
-    
+
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(400).json({ message: "Invalid userId format" });
     }
