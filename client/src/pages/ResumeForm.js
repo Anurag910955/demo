@@ -59,33 +59,36 @@ const ResumeForm = () => {
   };
 
   // Handle form submission
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  console.log("User ID:", userId); // Debug log
-
-  if (!userId || userId.length !== 24) {
-    alert("Invalid user ID. Please log in again.");
-    return;
-  }
-
-  try {
-    let response;
-    if (existingData) {
-      response = await axios.put(`https://demo-q0du.onrender.com/api/resume/update/${userId}`, formData);
-    } else {
-      response = await axios.post("https://demo-q0du.onrender.com/api/resume/save", { userId, ...formData });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    console.log("User ID:", userId);
+  
+    if (!userId || userId.length !== 24) {
+      alert("Invalid user ID. Please log in again.");
+      return;
     }
-
-    console.log("Server Response:", response.data);
-    alert(existingData ? "Resume updated successfully!" : "Resume saved successfully!");
-    navigate("/resume-preview", { state: { ...formData, userId } });
-
-  } catch (error) {
-    console.error("Error:", error.response?.data || error.message);
-    alert("Error: " + (error.response?.data?.message || error.message));
-  }
-};
+  
+    // Include selectedTemplate in the data being saved
+    const dataToSubmit = { ...formData, selectedTemplate, userId };
+  
+    try {
+      let response;
+      if (existingData) {
+        response = await axios.put(`https://demo-q0du.onrender.com/api/resume/update/${userId}`, dataToSubmit);
+      } else {
+        response = await axios.post("https://demo-q0du.onrender.com/api/resume/save", dataToSubmit);
+      }
+  
+      console.log("Server Response:", response.data);
+      alert(existingData ? "Resume updated successfully!" : "Resume saved successfully!");
+      navigate("/resume-preview", { state: dataToSubmit });
+  
+    } catch (error) {
+      console.error("Error:", error.response?.data || error.message);
+      alert("Error: " + (error.response?.data?.message || error.message));
+    }
+  };
 
 
   return (
