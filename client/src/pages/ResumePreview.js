@@ -3,7 +3,6 @@ import "../resume.css";
 import "../templates/template1.css";
 import "../templates/template2.css";
 import "../templates/template3.css";
-
 const ResumePreview = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,7 +28,7 @@ const ResumePreview = () => {
       <div className="resume-content">
         <h1 className="resume-name">{formData.personalDetails?.name || "Your Name"}</h1>
         <p className="resume-contact">
-          {formData.personalDetails?.phone || "Phone"} | {formData.personalDetails?.email || "Email"} | {formData.personalDetails?.github || "GitHub"}
+        {formData.personalDetails?.phone || "Phone"} | {formData.personalDetails?.email || "Email"} | {formData.personalDetails?.github || "GitHub"}
         </p>
 
         <section>
