@@ -1,12 +1,15 @@
 .template2 {
   font-family: 'Georgia', serif;
-  padding: 25px;
+  padding: 15px;  /* Reduced padding */
   border: 2px dashed #000;
   margin: 20px auto;
-  width: 75%;
+  width: 80%;  /* Match width with Template 1 */
+  max-width: 800px;  /* Prevents excessive widening */
   background: #f9f9f9;
+  overflow-wrap: break-word;  /* Ensures long words wrap */
+  word-wrap: break-word;
+  box-sizing: border-box; /* Ensures padding doesn't increase width */
 }
-
 .template2 h1 {
   font-size: 26px;
   text-align: left;

@@ -1,10 +1,14 @@
 .template3 {
   font-family: 'Verdana', sans-serif;
-  padding: 30px;
+  padding: 20px; /* Reduced padding */
   border: 1px solid #000;
   margin: 20px auto;
-  width: 85%;
+  width: 80%;  /* Match width with Template 1 */
+  max-width: 800px;
   background: #fff;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  box-sizing: border-box;
 }
 
 .template3 h1 {
