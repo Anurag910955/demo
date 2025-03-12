@@ -1,40 +1,76 @@
 .template1 {
-  font-size: 12px;
-  padding: 10px;
+  font-size: 11px; /* Reduced font size slightly */
+  padding: 8px; /* Adjusted padding */
   border: 1px solid #000;
-  margin: 10px auto;
+  margin: 8px auto;
   width: 100%;
-  max-width: 750px;
+  max-width: 700px; /* Slightly reduced width */
   box-shadow: none;
   box-sizing: border-box;
   page-break-inside: avoid;
 }
 
 .template1 h1 {
-  font-size: 20px;
+  font-size: 18px; /* Slightly reduced */
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .template1 .resume-contact {
-  font-size: 12px;
-  margin-bottom: 5px;
+  font-size: 10px; /* Reduced font size */
+  margin-bottom: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.template1 .resume-contact span {
+  padding: 2px 5px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
 }
 
 .template1 section {
-  margin-bottom: 10px;
-  padding: 5px;
+  margin-bottom: 8px; /* Reduced spacing */
+  padding: 4px;
 }
 
 .template1 h2 {
-  font-size: 14px;
+  font-size: 12px; /* Reduced font size */
   border-bottom: 1px solid #000;
-  padding-bottom: 2px;
-  margin-bottom: 5px;
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
 }
 
 .template1 p {
-  font-size: 12px;
-  margin: 3px 0;
-  line-height: 1.3;
+  font-size: 11px; /* Reduced font size */
+  margin: 2px 0;
+  line-height: 1.2;
+}
+
+/* Adjust list styles */
+.template1 ul {
+  margin: 2px 0;
+  padding-left: 15px;
+}
+
+.template1 li {
+  font-size: 11px;
+  margin: 2px 0;
+  line-height: 1.2;
+}
+
+/* Two-column layout for compact sections */
+@media screen and (min-width: 600px) {
+  .template1 .two-column {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Ensure wrapping */
+  }
+
+  .template1 .two-column section {
+    width: 48%;
+  }
 }
