@@ -1,41 +1,40 @@
 .template3 {
-  font-family: 'Verdana', sans-serif;
-  padding: 20px; /* Reduced padding */
+  font-size: 12px;
+  padding: 10px;
   border: 1px solid #000;
-  margin: 20px auto;
-  width: 80%;  /* Match width with Template 1 */
-  max-width: 800px;
-  background: #fff;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+  margin: 10px auto;
+  width: 100%;
+  max-width: 750px;
+  box-shadow: none;
   box-sizing: border-box;
+  page-break-inside: avoid;
 }
 
 .template3 h1 {
-  font-size: 28px;
+  font-size: 20px;
   text-align: center;
-  text-transform: uppercase;
+  margin-bottom: 5px;
 }
 
 .template3 .resume-contact {
-  text-align: center;
-  font-size: 13px;
-  margin-bottom: 15px;
+  font-size: 12px;
+  margin-bottom: 5px;
 }
 
 .template3 section {
-  margin-bottom: 20px;
-  padding: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
 }
 
 .template3 h2 {
-  font-size: 20px;
+  font-size: 14px;
   border-bottom: 1px solid #000;
-  padding-bottom: 3px;
-  margin-bottom: 10px;
+  padding-bottom: 2px;
+  margin-bottom: 5px;
 }
 
 .template3 p {
-  margin: 5px 0;
-  font-size: 14px;
+  font-size: 12px;
+  margin: 3px 0;
+  line-height: 1.3;
 }
